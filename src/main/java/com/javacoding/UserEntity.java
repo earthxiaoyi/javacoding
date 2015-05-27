@@ -1,6 +1,15 @@
-package com.javacoding.reflection;
+package com.javacoding;
 
-public class UserEntity {
+import java.io.Serializable;
+
+public class UserEntity implements Serializable{
+	
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7086027127379288125L;
 	
 	private String id="222";
 	private String name;
