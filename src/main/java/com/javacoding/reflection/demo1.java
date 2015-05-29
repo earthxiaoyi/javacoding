@@ -36,6 +36,7 @@ public class demo1 {
 	public void demo3() throws Exception{
 		Class<?> forName = Class.forName("com.javacoding.reflection.UserEntity");
 		Method method = forName.getMethod("setId", String.class);
+		//执行这个方法
 		method.invoke(forName.newInstance(), "ssss");
 	}
 	//反射字段

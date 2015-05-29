@@ -1,5 +1,6 @@
 package com.javacoding.socket;
 
+import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
@@ -13,21 +14,20 @@ public class SocketClient {
 		//与服务端建立连接
 		Socket client = new Socket(host,port);
 		//开始写数据
-		OutputStreamWriter writer = new OutputStreamWriter(client.getOutputStream());
-		writer.write("Hello,this is client b!");
-		writer.write("eof");
+		OutputStreamWriter writer = new OutputStreamWriter(client.getOutputStream(),"GBK");
+		writer.write("你好,服务端!");
+		writer.write("eof\n");
 		//刷新缓存中的数据
 		writer.flush();
 		
 		//写完后,再接受服务端的数据
-		InputStreamReader reader = new InputStreamReader(client.getInputStream());
-		char[] chars = new char[1024];
-		int len=0;
+		BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream(),"UTF-8"));
+		//设置10秒超时
+		client.setSoTimeout(1000*10);
 		String temp;
 		int index;
 		StringBuilder sb = new StringBuilder();
-		while((len = reader.read(chars))!=-1){
-			temp = new String(chars,0,len);
+		while((temp = reader.readLine())!=null){
 			if((index = temp.indexOf("eof"))==-1){
 				sb.append(temp.substring(0,index));
 			}
@@ -35,7 +35,7 @@ public class SocketClient {
 		}
 		//打印数据
 		System.out.println("from server:"+sb.toString());
-		
+		reader.close();
 		writer.close();
 		client.close();
 	}
