@@ -55,6 +55,7 @@ public class ThreadPool {
 					}
 					r = (Runnable) taskList.removeFirst();
 				}
+				//调用线程的run方法
 				try {
 					r.run();
 				} catch (Exception e) {

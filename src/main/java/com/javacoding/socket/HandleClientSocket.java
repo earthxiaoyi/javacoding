@@ -12,6 +12,7 @@ public class HandleClientSocket {
 		this.client = client;
 	}
 	//处理  客户端 接收/发送 消息
+	@SuppressWarnings("unused")
 	private void handleClient() throws Exception {
 		// 开始写数据
 		OutputStreamWriter writer = new OutputStreamWriter(client.getOutputStream());

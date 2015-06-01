@@ -1,4 +1,4 @@
-package com.javacoding.socket;
+package com.javacoding.socket.demo2;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -45,16 +45,20 @@ public class HandleServerSocket implements Runnable{
 			sb.append(temp);
 		}
 		System.out.println("from client:" + sb);
-
+		OutputStreamWriter writer=null;
 		// 读完后,客户端再回写一条数据
-		OutputStreamWriter writer = new OutputStreamWriter(socket.getOutputStream(),"UTF-8");
-		writer.write("你好,客户端!");
-		writer.write("eof\n");
-		writer.flush();
+		// 循环写数据
+		while(true){
+			writer = new OutputStreamWriter(socket.getOutputStream(),"UTF-8");
+			writer.write("你好,客户端!");
+			writer.write("eof\n");
+			writer.flush();
+			Thread.sleep(1000);
+		}
 		// 关闭连接
-		writer.close();
-		reader.close();
-		socket.close();
+		//writer.close();
+		//reader.close();
+		//socket.close();
 	}
 
 	
