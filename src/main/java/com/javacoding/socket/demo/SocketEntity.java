@@ -1,6 +1,12 @@
 package com.javacoding.socket.demo;
 
-public class SocketEntity {
+import java.io.Serializable;
+
+public class SocketEntity implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//连接名称
 	private String name;
 	//ip
